@@ -41,8 +41,9 @@ export default function PlaygroundPage() {
     <main className="playground">
       <h1>Accessibility Playground</h1>
       <p className="playground-intro">
-        Hand-built React + TypeScript components to test and practice accessible
-        patterns. No component library, no shadcn/ui.
+        Hand-built React + TypeScript components to practice accessible patterns.
+        These playground components are implemented from scratch without a
+        component library.
       </p>
 
       <section className="playground-section">
