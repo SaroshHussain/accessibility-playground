@@ -47,11 +47,17 @@ export default function PlaygroundPage() {
 
       <section className="playground-section">
         <h2>Modal Dialog</h2>
+        <span className="section-tag">WAI-ARIA · dialog-modal</span>
         <p>
           Open the dialog, then try Tab and Shift + Tab. Focus stays inside the
           dialog until you close it with the Close button, the overlay, or the
           Escape key.
         </p>
+        <div className="kbd-hint">
+          <kbd className="kbd">TAB</kbd>
+          <kbd className="kbd">SHIFT + TAB</kbd>
+          <kbd className="kbd">ESC</kbd>
+        </div>
         <ModalDialog triggerLabel="Open dialog" title="Sample modal dialog">
           <p>
             This is an accessible modal dialog. Try tabbing through the
@@ -82,16 +88,28 @@ export default function PlaygroundPage() {
 
       <section className="playground-section">
         <h2>Tabs</h2>
+        <span className="section-tag">WAI-ARIA · tabs</span>
         <p>Keyboard navigable tabs following the WAI-ARIA tabs pattern.</p>
+        <div className="kbd-hint">
+          <kbd className="kbd">←</kbd>
+          <kbd className="kbd">→</kbd>
+          <kbd className="kbd">HOME</kbd>
+          <kbd className="kbd">END</kbd>
+        </div>
         <Tabs label="Playground tabs" tabs={tabs} />
       </section>
 
       <section className="playground-section">
         <h2>Disclosure</h2>
+        <span className="section-tag">WAI-ARIA · disclosure</span>
         <p>
           A show / hide pattern. The button exposes its expanded state with
           aria-expanded and connects to the content with aria-controls.
         </p>
+        <div className="kbd-hint">
+          <kbd className="kbd">ENTER</kbd>
+          <kbd className="kbd">SPACE</kbd>
+        </div>
         <Disclosure summary="What is a disclosure?">
           <p>
             A disclosure is a widget where a single button expands or collapses

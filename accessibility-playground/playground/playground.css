@@ -9,15 +9,38 @@
   margin: 0 0 0.25rem;
 }
 
+.playground > h1::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
 .playground .playground-intro {
   margin: 0 0 2rem;
 }
 
 .playground-section {
   margin-bottom: 2.5rem;
-  padding: 1.25rem;
+  padding: 1.25rem 1.5rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
+  background: var(--social-bg);
+}
+
+.playground-section .section-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-bg);
 }
 
 .playground-section h2 {
@@ -36,10 +59,18 @@
   color: var(--text-h);
   font: inherit;
   cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.1s ease;
 }
 
 .playground button:hover {
   border-color: var(--accent);
+}
+
+.playground button:active {
+  transform: translateY(1px);
 }
 
 .playground button:focus-visible {
@@ -123,6 +154,7 @@
   border-radius: 6px 6px 0 0;
   background: none;
   color: var(--text);
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .tab.active {
@@ -149,4 +181,49 @@
 
 .disclosure + .disclosure {
   margin-top: 1rem;
+}
+
+/* ---- polish ---- */
+
+.kbd-hint {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.kbd {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--code-bg);
+  color: var(--text-h);
+}
+
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-dialog-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.modal-overlay {
+  animation: modal-overlay-in 0.15s ease-out;
+}
+
+.modal-dialog {
+  animation: modal-dialog-in 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-dialog {
+    animation: none;
+  }
 }
