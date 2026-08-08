@@ -48,21 +48,42 @@ export default function PlaygroundPage() {
       <section className="playground-section">
         <h2>Modal Dialog</h2>
         <p>
-          A dialog that traps focus, closes on Escape, and returns focus to the
-          trigger button.
+          Open the dialog, then try Tab and Shift + Tab. Focus stays inside the
+          dialog until you close it with the Close button, the overlay, or the
+          Escape key.
         </p>
-        <ModalDialog openLabel="Open sample dialog" title="Sample dialog">
+        <ModalDialog triggerLabel="Open dialog" title="Sample modal dialog">
           <p>
-            This is a simple accessible modal. Click the overlay or the Close
-            button below to close it.
+            This is an accessible modal dialog. Try tabbing through the
+            interactive elements below with Tab and Shift + Tab.
           </p>
+          <label htmlFor="modal-name">Your name</label>
+          <input id="modal-name" type="text" placeholder="Type your name" />
+          <p>
+            <a
+              href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WAI-ARIA modal dialog pattern
+            </a>
+          </p>
+          <button type="button">Another button</button>
         </ModalDialog>
+        <div className="modal-background-test">
+          <p>
+            This content sits behind the dialog. While the dialog is open the
+            rest of the page is inert, so this button cannot be clicked or
+            focused.
+          </p>
+          <button type="button">Button behind the dialog</button>
+        </div>
       </section>
 
       <section className="playground-section">
         <h2>Tabs</h2>
         <p>Keyboard navigable tabs following the WAI-ARIA tabs pattern.</p>
-        <Tabs tabs={tabs} />
+        <Tabs label="Playground tabs" tabs={tabs} />
       </section>
 
       <section className="playground-section">

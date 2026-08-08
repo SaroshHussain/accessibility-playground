@@ -7,17 +7,27 @@ export type TabItem = {
 }
 
 type TabsProps = {
+  label: string
   tabs: TabItem[]
 }
 
-export default function Tabs({ tabs }: TabsProps) {
+export default function Tabs({ label, tabs }: TabsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const baseId = useId()
 
-  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    let nextIndex = -1
+  function activateTab(index: number) {
+    setActiveIndex(index)
+    document.getElementById(`${baseId}-tab-${index}`)?.focus()
+  }
+
+  function handleKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) {
+    let nextIndex: number | null = null
 
     switch (event.key) {
+      // The APG pattern keeps focus in the tab list and wraps around.
       case 'ArrowRight':
         nextIndex = (index + 1) % tabs.length
         break
@@ -30,18 +40,20 @@ export default function Tabs({ tabs }: TabsProps) {
       case 'End':
         nextIndex = tabs.length - 1
         break
+      case 'Tab':
+        // No preventDefault: Tab leaves the tab list and enters the panel.
+        return
     }
 
-    if (nextIndex !== -1) {
+    if (nextIndex !== null) {
       event.preventDefault()
-      setActiveIndex(nextIndex)
-      document.getElementById(`${baseId}-tab-${nextIndex}`)?.focus()
+      activateTab(nextIndex)
     }
   }
 
   return (
     <div className="tabs">
-      <div className="tablist" role="tablist" aria-label="Tabs example">
+      <div className="tablist" role="tablist" aria-label={label}>
         {tabs.map((tab, index) => {
           const isActive = index === activeIndex
           return (
@@ -66,6 +78,7 @@ export default function Tabs({ tabs }: TabsProps) {
         id={`${baseId}-panel-${activeIndex}`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${activeIndex}`}
+        tabIndex={0}
         className="tabpanel"
       >
         {tabs[activeIndex].content}
