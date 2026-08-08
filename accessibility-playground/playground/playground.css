@@ -146,3 +146,7 @@
   border-radius: 6px;
   background: var(--accent-bg);
 }
+
+.disclosure + .disclosure {
+  margin-top: 1rem;
+}

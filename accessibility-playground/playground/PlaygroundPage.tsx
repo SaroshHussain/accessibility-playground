@@ -90,13 +90,19 @@ export default function PlaygroundPage() {
         <h2>Disclosure</h2>
         <p>
           A show / hide pattern. The button exposes its expanded state with
-          aria-expanded.
+          aria-expanded and connects to the content with aria-controls.
         </p>
         <Disclosure summary="What is a disclosure?">
           <p>
             A disclosure is a widget where a single button expands or collapses
-            a related panel. It is built from a native button and the
-            aria-expanded attribute.
+            a related panel of content. It is built from a native button and
+            the aria-expanded attribute.
+          </p>
+        </Disclosure>
+        <Disclosure summary="How do I activate a disclosure?">
+          <p>
+            Move focus to the button and press Enter or the Space bar. The
+            same keys collapse it again.
           </p>
         </Disclosure>
       </section>
