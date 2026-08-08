@@ -87,6 +87,19 @@ describe('Disclosure', () => {
     expect(screen.queryByRole('region')).not.toBeInTheDocument()
   })
 
+  it('collapses again with a second click', async () => {
+    const user = userEvent.setup()
+    renderDisclosures()
+
+    const button = screen.getByRole('button', { name: 'First topic' })
+    await user.click(button)
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+
+    await user.click(button)
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByRole('region')).not.toBeInTheDocument()
+  })
+
   it('keeps each disclosure independent', async () => {
     const user = userEvent.setup()
     renderDisclosures()

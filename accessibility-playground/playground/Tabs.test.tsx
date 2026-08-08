@@ -222,4 +222,20 @@ describe('Tabs', () => {
 
     expect(screen.getByRole('tabpanel')).toHaveFocus()
   })
+
+  it('ignores Arrow Up and Arrow Down in a horizontal tab list', () => {
+    renderTabs()
+
+    const firstTab = screen.getByRole('tab', { name: 'First' })
+    firstTab.focus()
+
+    // Per the APG, a horizontal tab list does not handle Up/Down so the
+    // browser can scroll normally with those keys.
+    expect(fireEvent.keyDown(firstTab, { key: 'ArrowDown' })).toBe(true)
+    expect(fireEvent.keyDown(firstTab, { key: 'ArrowUp' })).toBe(true)
+
+    expect(firstTab).toHaveFocus()
+    expect(firstTab).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('First panel')
+  })
 })

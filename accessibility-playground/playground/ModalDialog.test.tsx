@@ -138,4 +138,18 @@ describe('ModalDialog', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
     expect(trigger).toHaveFocus()
   })
+
+  it('closes with the overlay click and returns focus to the trigger', () => {
+    render(<TestPage />)
+
+    const trigger = screen.getByRole('button', { name: 'Open dialog' })
+    fireEvent.click(trigger)
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+
+    // Click the dimmed overlay behind the dialog.
+    fireEvent.click(document.querySelector('.modal-overlay')!)
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
+  })
 })
